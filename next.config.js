@@ -1,10 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  // Necesario para que formidable funcione en las API routes
-  api: {
-    bodyParser: false,
-  },
   // Cabeceras de seguridad
   async headers() {
     return [
