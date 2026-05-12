@@ -156,6 +156,81 @@ a, button { transition: all 0.15s ease; }
   animation: slideInRight 0.25s ease;
 }
 
+/* ── Responsive grids ── */
+.grid-subir {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+.grid-bento {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.bento-span-2 { grid-column: span 2; }
+.bento-span-4 { grid-column: span 4; }
+
+@media (max-width: 1024px) {
+  .grid-bento {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .bento-span-2 { grid-column: span 2; }
+  .bento-span-4 { grid-column: span 2; }
+}
+
+@media (max-width: 768px) {
+  .grid-subir {
+    grid-template-columns: 1fr;
+  }
+  .grid-bento {
+    grid-template-columns: 1fr;
+  }
+  .bento-span-2 { grid-column: span 1; }
+  .bento-span-4 { grid-column: span 1; }
+}
+
+/* ── Header responsive ── */
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  height: 64px;
+}
+@media (max-width: 640px) {
+  .header-inner {
+    padding: 0 16px;
+    gap: 8px;
+    flex-wrap: wrap;
+    height: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .header-right span {
+    display: none; /* ocultar email en móvil */
+  }
+}
+
+/* ── Main padding responsive ── */
+.main-pad {
+  padding: 28px;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+@media (max-width: 768px) {
+  .main-pad { padding: 16px; }
+}
+
+/* ── Filters responsive ── */
+.filtros-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: flex-end;
+}
+
 /* ── Badge ── */
 .badge {
   display: inline-block;

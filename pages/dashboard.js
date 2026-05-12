@@ -304,29 +304,29 @@ export default function Dashboard() {
       {/* ── HEADER ── */}
       <header style={{
         background:'#1A1A1A', borderBottom:'1px solid #2A2A2A',
-        padding:'0 28px', height:64,
-        display:'flex', alignItems:'center', justifyContent:'space-between',
         position:'sticky', top:0, zIndex:10,
       }}>
+        <div className="header-inner" style={{ width:'100%' }}>
         <div style={{ display:'flex', alignItems:'center', gap:16 }}>
           <img src="/favicon.png" alt="SD" style={{ height:40, objectFit:'contain' }} />
           <div style={{ width:1, height:24, background:'#333' }} />
-          <span style={{ color:'#aaa', fontSize:15, fontWeight:500 }}>Panel de Administración</span>
+          <span style={{ color:'#aaa', fontSize:15, fontWeight:500 }}>Admin</span>
         </div>
-        <div style={{ display:'flex', alignItems:'center', gap:12 }}>
+        <div className="header-right" style={{ display:'flex', alignItems:'center', gap:10, flexWrap:'wrap' }}>
           <span className="badge badge-admin">Admin</span>
           <span style={{ color:'#666', fontSize:13 }}>{usuario?.perfil?.nombre || usuario?.email}</span>
           <button className="btn-ghost" onClick={() => router.push('/subir')}>
-            ➕ Subir factura
+            ➕ Subir
           </button>
           <button className="btn-ghost" onClick={() => { cerrarSesion(); router.push('/'); }}>
             Salir
           </button>
         </div>
+        </div>
       </header>
 
       {/* ── MAIN ── */}
-      <main style={{ flex:1, padding:'28px', maxWidth:1400, margin:'0 auto', width:'100%' }}>
+      <main className="main-pad" style={{ flex:1 }}>
 
         {/* Título + acciones */}
         <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:28 }}>
@@ -343,8 +343,7 @@ export default function Dashboard() {
         <div style={{
           background:'#1A1A1A', border:'1px solid #2A2A2A',
           borderRadius:14, padding:'20px 24px', marginBottom:24,
-          display:'flex', flexWrap:'wrap', gap:14, alignItems:'flex-end',
-        }}>
+        }} className="filtros-wrap">
           <FilterField label="Desde">
             <input type="date" className="input-base" style={{ width:160 }}
               value={filtros.desde}
@@ -376,7 +375,7 @@ export default function Dashboard() {
         </div>
 
         {/* ── BENTO GRID ── */}
-        <div style={{ display:'grid', gridTemplateColumns:'repeat(4, 1fr)', gridTemplateRows:'auto', gap:20 }}>
+        <div className="grid-bento">
 
           {/* KPIs — fila 1 */}
           <StatCard label="Gasto Total" value={`€ ${fmt(totalGasto)}`} icon="💰" accent />
@@ -390,7 +389,7 @@ export default function Dashboard() {
           />
 
           {/* Gráfico barras — col 1-2, fila 2 */}
-          <div className="bento-card" style={{ gridColumn:'span 2' }}>
+          <div className="bento-card bento-span-2">
             <p style={{ fontSize:13, fontWeight:600, color:'#888', textTransform:'uppercase', letterSpacing:'0.05em', marginBottom:16 }}>Gastos por mes</p>
             <div style={{ height:220 }}>
               {dataBarras.length ? <BarChart data={dataBarras} /> : <Empty />}
@@ -398,7 +397,7 @@ export default function Dashboard() {
           </div>
 
           {/* Gráfico proveedores — col 3-4, fila 2 */}
-          <div className="bento-card" style={{ gridColumn:'span 2' }}>
+          <div className="bento-card bento-span-2">
             <p style={{ fontSize:13, fontWeight:600, color:'#888', textTransform:'uppercase', letterSpacing:'0.05em', marginBottom:16 }}>Top 5 Proveedores</p>
             <div style={{ height:220 }}>
               {dataProveedores.length ? <DoughnutChart data={dataProveedores} /> : <Empty />}
@@ -406,7 +405,7 @@ export default function Dashboard() {
           </div>
 
           {/* Tabla — span 4 */}
-          <div className="bento-card" style={{ gridColumn:'span 4', padding:0, overflow:'hidden' }}>
+          <div className="bento-card bento-span-4" style={{ padding:0, overflow:'hidden' }}>
             <div style={{ padding:'20px 24px 16px', borderBottom:'1px solid #2A2A2A', display:'flex', justifyContent:'space-between', alignItems:'center' }}>
               <p style={{ fontSize:15, fontWeight:600 }}>Facturas{loading && <span style={{ marginLeft:12 }}><div className="spinner" style={{ width:14, height:14, display:'inline-block' }} /></span>}</p>
               <span style={{ fontSize:13, color:'#666' }}>{facturas.length} resultado{facturas.length !== 1 ? 's' : ''}</span>

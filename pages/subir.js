@@ -224,13 +224,13 @@ export default function SubirFactura() {
       </header>
 
       {/* Main */}
-      <main style={{ flex:1, padding:'32px 24px', maxWidth:1000, margin:'0 auto', width:'100%' }}>
+      <main className="main-pad" style={{ flex:1 }}>
         <h1 style={{ fontSize:24, fontWeight:700, marginBottom:8 }}>Nueva Factura</h1>
         <p style={{ color:'#666', fontSize:14, marginBottom:32 }}>
           Sube la imagen o PDF de tu factura. La IA extraerá los datos automáticamente.
         </p>
 
-        <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:24, alignItems:'start' }}>
+        <div className="grid-subir">
 
           {/* ── Zona de subida ── */}
           <div>
