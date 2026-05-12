@@ -49,7 +49,7 @@ export default async function handler(req, res) {
     });
 
     // ── 3. Fila 1: Logo / Título ─────────────────────────────
-    ws.mergeCells('A1:I1');
+    ws.mergeCells('A1:H1');
     const titleCell = ws.getCell('A1');
     titleCell.value = 'GESTIÓN DE FACTURAS — SD';
     titleCell.font  = { bold: true, size: 16, color: { argb: COLOR_BLANCO } };
@@ -58,7 +58,7 @@ export default async function handler(req, res) {
     ws.getRow(1).height = 36;
 
     // ── 4. Fila 2: Info de exportación ───────────────────────
-    ws.mergeCells('A2:I2');
+    ws.mergeCells('A2:H2');
     const infoCell = ws.getCell('A2');
     const periodoStr = desde || hasta
       ? `Período: ${desde || '—'} al ${hasta || '—'}`
@@ -78,7 +78,6 @@ export default async function handler(req, res) {
       { header: 'IVA %',          key: 'ivapct',   width: 8  },
       { header: 'Cuota IVA',      key: 'ivaimp',   width: 14 },
       { header: 'Total',          key: 'total',    width: 16 },
-      { header: 'Empleado',       key: 'empleado', width: 22 },
       { header: 'Fecha Subida',   key: 'subida',   width: 16 },
     ];
 
@@ -143,17 +142,14 @@ export default async function handler(req, res) {
       cTotal.font   = { bold: true };
       cTotal.alignment = { horizontal: 'right' };
 
-      // Empleado
-      row.getCell(8).value = f.empleado_nombre || '';
-
       // Fecha subida
-      const cSubida = row.getCell(9);
+      const cSubida = row.getCell(8);
       cSubida.value  = f.created_at ? new Date(f.created_at) : null;
       cSubida.numFmt = 'dd/mm/yyyy hh:mm';
       cSubida.font   = { color: { argb: 'FFaaaaaa' }, size: 10 };
 
       // Fondo alternado
-      for (let c = 1; c <= 9; c++) {
+      for (let c = 1; c <= 8; c++) {
         row.getCell(c).fill = { type:'pattern', pattern:'solid', fgColor:{ argb: bgColor } };
       }
 
@@ -186,7 +182,7 @@ export default async function handler(req, res) {
     tTotal.numFmt = '#,##0.00 €';
     tTotal.font   = { bold: true, size: 14, color: { argb: COLOR_BLANCO } };
 
-    for (let c = 1; c <= 9; c++) {
+    for (let c = 1; c <= 8; c++) {
       totalRow.getCell(c).fill = { type:'pattern', pattern:'solid', fgColor:{ argb: COLOR_ROJO } };
     }
     totalRow.height = 28;
