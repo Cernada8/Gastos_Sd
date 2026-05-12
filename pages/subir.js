@@ -151,13 +151,13 @@ export default function SubirFactura() {
       const filename = `${usuario.id}/${Date.now()}.${ext}`;
 
       const { error: uploadError } = await supabase.storage
-        .from('facturas')
+        .from('Facturas')
         .upload(filename, file, { contentType: file.type, upsert: false });
 
       if (uploadError) throw new Error('Error al subir el archivo: ' + uploadError.message);
 
       // 2. Obtener URL pública
-      const { data: urlData } = supabase.storage.from('facturas').getPublicUrl(filename);
+      const { data: urlData } = supabase.storage.from('Facturas').getPublicUrl(filename);
       const archivo_url = urlData.publicUrl;
 
       // 3. Insertar en BD

@@ -110,9 +110,9 @@ export default async function handler(req, res) {
         // Extraer la ruta relativa del bucket desde la URL pública
         const urlObj = new URL(factura.archivo_url);
         // La ruta tiene el formato: /storage/v1/object/public/facturas/RUTA
-        const pathParts = urlObj.pathname.split('/storage/v1/object/public/facturas/');
+        const pathParts = urlObj.pathname.split('/storage/v1/object/public/Facturas/');
         if (pathParts[1]) {
-          await supabaseAdmin.storage.from('facturas').remove([decodeURIComponent(pathParts[1])]);
+          await supabaseAdmin.storage.from('Facturas').remove([decodeURIComponent(pathParts[1])]);
         }
       }
 
