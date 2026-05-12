@@ -317,7 +317,10 @@ export default function Dashboard() {
         </div>
         <div style={{ display:'flex', alignItems:'center', gap:12 }}>
           <span className="badge badge-admin">Admin</span>
-          <span style={{ color:'#666', fontSize:13 }}>{usuario?.email}</span>
+          <span style={{ color:'#666', fontSize:13 }}>{usuario?.perfil?.nombre || usuario?.email}</span>
+          <button className="btn-ghost" onClick={() => router.push('/subir')}>
+            ➕ Subir factura
+          </button>
           <button className="btn-ghost" onClick={() => { cerrarSesion(); router.push('/'); }}>
             Salir
           </button>

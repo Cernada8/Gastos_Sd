@@ -213,7 +213,12 @@ export default function SubirFactura() {
           <span style={{ color:'#888', fontSize:14 }}>Subir factura</span>
         </div>
         <div style={{ display:'flex', alignItems:'center', gap:12 }}>
-          <span style={{ color:'#666', fontSize:13 }}>{usuario?.email}</span>
+          <span style={{ color:'#666', fontSize:13 }}>{usuario?.perfil?.nombre || usuario?.email}</span>
+          {usuario?.perfil?.role === 'admin' && (
+            <button className="btn-ghost" onClick={() => router.push('/dashboard')}>
+              📊 Dashboard
+            </button>
+          )}
           <button className="btn-ghost" onClick={() => { cerrarSesion(); router.push('/'); }}>
             Salir
           </button>
