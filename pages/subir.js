@@ -206,9 +206,7 @@ export default function SubirFactura() {
         position:'sticky', top:0, zIndex:10,
       }}>
         <div style={{ display:'flex', alignItems:'center', gap:16 }}>
-          <img src="/logo.png" alt="SD" style={{ height:36, objectFit:'contain' }}
-            onError={(e) => { e.target.style.display='none'; e.target.nextSibling.style.display='block'; }} />
-          <span style={{ display:'none', fontWeight:800, color:'#D42B2B', fontSize:22 }}>SD</span>
+          <img src="/favicon.png" alt="SD" style={{ height:36, objectFit:'contain' }} />
           <div style={{ width:1, height:24, background:'#333' }} />
           <span style={{ color:'#888', fontSize:14 }}>Subir factura</span>
         </div>

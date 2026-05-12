@@ -37,6 +37,9 @@ export default function Document() {
           }}
         />
         <meta name="theme-color" content="#111111" />
+        {/* Favicon */}
+        <link rel="icon" type="image/png" href="/favicon.png" />
+        <link rel="shortcut icon" href="/favicon.png" />
       </Head>
       <body className="bg-surface text-white font-sans antialiased">
         <Main />

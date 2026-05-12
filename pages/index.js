@@ -85,12 +85,10 @@ export default function LoginPage() {
         {/* Logo */}
         <div style={{ textAlign: 'center', marginBottom: '36px' }}>
           <img
-            src="/logo.png"
+            src="/favicon.png"
             alt="SD Logo"
-            style={{ maxWidth: '160px', maxHeight: '80px', objectFit: 'contain', margin: '0 auto', display: 'block' }}
-            onError={(e) => { e.target.style.display='none'; e.target.nextSibling.style.display='block'; }}
+            style={{ maxWidth: '120px', maxHeight: '120px', objectFit: 'contain', margin: '0 auto', display: 'block' }}
           />
-          <div style={{ display:'none', fontSize:'32px', fontWeight:800, color:'#D42B2B' }}>SD</div>
           <p style={{ color:'#555', fontSize:'12px', marginTop:'10px', letterSpacing:'0.08em', textTransform:'uppercase' }}>
             Gestión de Facturas
           </p>
