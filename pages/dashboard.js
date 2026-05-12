@@ -56,9 +56,13 @@ function ModalEditar({ factura, onClose, onSaved }) {
   async function handleSubmit(e) {
     e.preventDefault(); setSaving(true);
     try {
+      const { data: { session } } = await supabase.auth.getSession();
       const res = await fetch(`/api/facturas?id=${factura.id}`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${session?.access_token}`,
+        },
         body: JSON.stringify({
           ...form,
           base_imponible: parseFloat(form.base_imponible),
@@ -115,7 +119,11 @@ function ModalEliminar({ factura, onClose, onDeleted }) {
   const [deleting, setDeleting] = useState(false);
   async function handleDelete() {
     setDeleting(true);
-    const res = await fetch(`/api/facturas?id=${factura.id}`, { method: 'DELETE' });
+    const { data: { session } } = await supabase.auth.getSession();
+    const res = await fetch(`/api/facturas?id=${factura.id}`, {
+      method: 'DELETE',
+      headers: { 'Authorization': `Bearer ${session?.access_token}` },
+    });
     if (res.ok) { onDeleted(); onClose(); }
     else { alert('Error al eliminar'); setDeleting(false); }
   }
